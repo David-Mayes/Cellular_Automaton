@@ -5,7 +5,9 @@
 #include "cell.h"
 
 /*
-
+Creates a cell group and sets the size to the parameter 'num'
+It then passes out a pointer to the new group after it is done 
+initialising it
 */
 CellGroup* createCellGroup(int num)
 {
@@ -17,6 +19,11 @@ CellGroup* createCellGroup(int num)
 	return newGroup;
 }
 
+/*
+Creates a cell and sets the data of the cell to the paramater
+'null' the passes out a pointer to the new cell after initialising
+the variables
+*/
 Cell* createCell(int num)
 {
 	Cell* newCell = malloc(sizeof(Cell));
@@ -27,19 +34,45 @@ Cell* createCell(int num)
 	return newCell;
 }
 
+/*
+A pointer to a cell in passed in and then that memory address is then free'd
+after the memory has been set to 0s. It will return 0 if memory is correctly
+deleted and returns 1 otherwise
+*/
 int deleteCell(Cell* cl)
 {
 	memset(cl, 0, sizeof(Cell));
 	free(cl);
-	return 0;
+	if(cl!=NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
 }
 
+/*
+A pointer to a group is passed in and then that memory address is then free'd if
+the group is empty of cells if it not it will loop through the cell group and free
+the cells then free the group. It will return 0 if the memory is corretly deleted
+and return 1 otherwise
+*/
 int deleteCellGroup(CellGroup* clgp)
 {
 	if(clgp->size==0)
 	{
 		memset(clgp, 0, sizeof(CellGroup));
 		free(clgp);
+		if(clgp!=NULL)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
 	}
 	else
 	{
@@ -59,6 +92,14 @@ int deleteCellGroup(CellGroup* clgp)
 		}
 		memset(clgp, 0, sizeof(CellGroup));
 		free(clgp);
+		if(clgp!=NULL)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
 	}	
 	return 0;
 }
