@@ -31,6 +31,7 @@ int deleteCell(Cell* cl)
 {
 	memset(cl, 0, sizeof(Cell));
 	free(cl);
+	return 0;
 }
 
 int deleteCellGroup(CellGroup* clgp)
@@ -59,8 +60,10 @@ int deleteCellGroup(CellGroup* clgp)
 		memset(clgp, 0, sizeof(CellGroup));
 		free(clgp);
 	}	
+	return 0;
 }
 
+//dummy main
 int main()
 {
 }
