@@ -15,8 +15,8 @@
 //the cell, points to the cell before and the cell after
 typedef struct MyCell{
 	int data;
-	Cell* left;
-	Cell* right;
+	struct MyCell* left;
+	struct MyCell* right;
 }Cell;
 
 //the cellular automaton has a pointer to the head and the size
@@ -32,7 +32,7 @@ CellGroup* createCellGroup(int num);
 int deleteCellGroup(CellGroup* clgp);
 
 //takes an int, stores it in a Cell and returns a pointer to it
-Cell* create Cell(int num);
+Cell* createCell(int num);
 
 //takes a pointer to a Cell and free it's memory
 int deleteCell(Cell* cl);

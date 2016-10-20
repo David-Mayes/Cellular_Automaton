@@ -2,23 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "cell.h"
 
 /*
 
 */
 CellGroup* createCellGroup(int num)
 {
-	CellGroup* newCellGroup = malloc(sizeof(CellGroup));
-	memset(newCellGroup,0,sizeof(CellGroup));
-	newCellGroup->head = NULL;
-	newCellGroup->size = num;
-	return newCellGroup;
+	CellGroup* newGroup;
+	newGroup = malloc(sizeof(CellGroup));
+	memset(newGroup, 0, sizeof(CellGroup));
+	newGroup->head = NULL;
+	newGroup->size = num;
+	return newGroup;
 }
 
 Cell* createCell(int num)
 {
 	Cell* newCell = malloc(sizeof(Cell));
-	memset(newCellGroup,0,sizeof(Cell));
+	memset(newCell,0,sizeof(Cell));
 	newCell->data = num;
 	newCell->left = NULL;
 	newCell->right = NULL;
@@ -45,7 +47,7 @@ int deleteCellGroup(CellGroup* clgp)
 		bool cont = true;
 		while(cont)
 		{
-			deleteCell(current)
+			deleteCell(current);
 			clgp->size--;
 			current = next;
 			next=current->right;
