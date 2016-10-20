@@ -10,7 +10,7 @@
 #define _CELL_
 
 #include <stdio.h>
-#include <stbool.h>
+#include <stdbool.h>
 
 //the cell, points to the cell before and the cell after
 typedef struct MyCell{
