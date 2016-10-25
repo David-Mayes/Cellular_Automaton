@@ -104,7 +104,29 @@ int deleteCellGroup(CellGroup* clgp)
 	return 0;
 }
 
+/*
+Takes in an integer number that it assumes it is between 0 and 255 (inclusive)
+It then passes out a the binary number
+*/
+int[] binaryConversion(long int x)
+{
+	
+    int binaryNumber[];
+    
+    long int quotient = x;
+
+	int i=0;
+    while(x!=0){
+    	i++;
+    	binaryNumber[i]= x % 2;
+    	x = x / 2;
+    }
+	
+	return binaryNumber;
+}
+
 //dummy main
 int main()
 {
+	binaryConversion(10);
 }
