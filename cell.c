@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <assert.h>
+
 #include "cell.h"
 
 /*
@@ -14,8 +16,8 @@ CellGroup* createCellGroup(int num)
 	CellGroup* newGroup;
 	newGroup = malloc(sizeof(CellGroup));
 	memset(newGroup, 0, sizeof(CellGroup));
-	newGroup->size = num;
-	for(int i=0; i<newGroup->size; i++)
+	newGroup->size = 0;
+	for(int i=0; i<num; i++)
 	{
 		Cell* newCell = createCell(0);
 		insertCell(newGroup, newCell);
@@ -36,6 +38,40 @@ Cell* createCell(int num)
 	newCell->left = NULL;
 	newCell->right = NULL;
 	return newCell;
+}
+
+/*
+Inserts a cell into the specified group. 
+*/
+void insertCell(CellGroup* clgp, Cell* cl){
+	//check that the pointers aren't NULL
+	assert(clgp != NULL);
+	assert(cl != NULL);
+
+	//if the cellgroup is empty
+	if( clgp->size == 0 ){
+		//make cl the head
+		clgp->head = cl;
+
+	} else {
+		//start at the head
+		Cell* tmpCell = clgp->head;
+		
+		//loop until the end of the group
+		for(int i = 1; i < (clgp->size); i++){
+			tmpCell = tmpCell->right;
+		}
+		//insert the new cell
+		tmpCell->right = cl;
+		cl->left = tmpCell;
+	}	
+
+	//make the list loop round
+	cl->right = clgp->head;
+	clgp->head->left = cl;
+
+	//increase the size
+	clgp->size++;
 }
 
 /*
@@ -125,9 +161,9 @@ void binaryConversion(long int x)
     	x = x / 2;
     }
 	
-	for(int j=1; i<8; i++)
+	for(int j=1; j<8; j++)
 	{
-		printf("%ld",binaryNumber[i]);
+		printf("%ld",binaryNumber[j]);
 	}
 	printf("\n");
 }
