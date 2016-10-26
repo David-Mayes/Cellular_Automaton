@@ -41,6 +41,6 @@ void insertCell(CellGroup* clgp, Cell* cl);
 int deleteCell(Cell* cl);
 
 //converts a decimal value to a binary one and returns it
-long int binaryConversion(long int x);
+int* binaryConversion(int x);
 
 #endif //_CELL_
