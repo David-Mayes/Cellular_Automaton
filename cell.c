@@ -152,28 +152,44 @@ int deleteCellGroup(CellGroup* clgp)
 Takes in an integer number that it assumes it is between 0 and 255 (inclusive)
 It then passes out a the binary number
 */
-void binaryConversion(long int x)
+int* binaryConversion(int x)
 {
-	
-    long int binaryNumber[8];
+	//Creates an array that will store the binary number backwards
+    int backwardBinaryNumber[8];
     
-    long int quotient = x;
-
-	int i=0;
-    while(x!=0){
-    	binaryNumber[i++]= x % 2;
-    	x = x / 2;
+    //Sets all the values to 0
+    for(int k=0; k<8; k++){
+    	backwardBinaryNumber[k] = 0;
     }
 	
-	for(int j=1; j<8; j++)
+	//Creates the binary number using modulus
+	int i=0;
+    while(x!=0){
+    	backwardBinaryNumber[i++]= x % 2;
+    	x = x / 2;
+    }
+
+	//Creates the binary number in memory
+	int *binaryNumber = malloc(sizeof(int)*8);
+	
+	//Reverses it and saves it to the new malloced memory
+	for(int j=7; j>-1; j--)
 	{
-		printf("%ld",binaryNumber[j]);
+		binaryNumber[7-j] = backwardBinaryNumber[j];
 	}
-	printf("\n");
+	
+	//Return the int pointer
+	return binaryNumber;
 }
 
 //dummy main
 int main()
 {
-	binaryConversion(10);
+	int* binary = binaryConversion(8);
+	for(int i=0;i<8;i++)
+	{
+		printf("%d\n",binary[i]);
+	}
+	
+	free(binary);	
 }
