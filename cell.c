@@ -17,9 +17,13 @@ CellGroup* createCellGroup(int num)
 	newGroup = malloc(sizeof(CellGroup));
 	memset(newGroup, 0, sizeof(CellGroup));
 	newGroup->size = 0;
+
+	//add the cells to the group
 	for(int i=0; i<num; i++)
 	{
+		//create a cell
 		Cell* newCell = createCell(0);
+		//add it
 		insertCell(newGroup, newCell);
 	}
 	return newGroup;
