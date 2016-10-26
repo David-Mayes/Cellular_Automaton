@@ -14,8 +14,12 @@ CellGroup* createCellGroup(int num)
 	CellGroup* newGroup;
 	newGroup = malloc(sizeof(CellGroup));
 	memset(newGroup, 0, sizeof(CellGroup));
-	newGroup->head = NULL;
 	newGroup->size = num;
+	for(int i=0; i<newGroup->size; i++)
+	{
+		Cell* newCell = createCell(0);
+		insertCell(newGroup, newCell);
+	}
 	return newGroup;
 }
 
@@ -117,12 +121,11 @@ void binaryConversion(long int x)
 
 	int i=0;
     while(x!=0){
-    	i++;
-    	binaryNumber[i]= x % 2;
+    	binaryNumber[i++]= x % 2;
     	x = x / 2;
     }
 	
-	for(int i=1; i<8; i++)
+	for(int j=1; i<8; i++)
 	{
 		printf("%ld",binaryNumber[i]);
 	}
