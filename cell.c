@@ -187,5 +187,5 @@ int main()
 		printf("%d\n",binary[i]);
 	}
 	
-	
+	free(binary);	
 }
