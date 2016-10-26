@@ -108,10 +108,10 @@ int deleteCellGroup(CellGroup* clgp)
 Takes in an integer number that it assumes it is between 0 and 255 (inclusive)
 It then passes out a the binary number
 */
-int[] binaryConversion(long int x)
+void binaryConversion(long int x)
 {
 	
-    int binaryNumber[];
+    long int binaryNumber[8];
     
     long int quotient = x;
 
@@ -122,7 +122,11 @@ int[] binaryConversion(long int x)
     	x = x / 2;
     }
 	
-	return binaryNumber;
+	for(int i=1; i<8; i++)
+	{
+		printf("%ld",binaryNumber[i]);
+	}
+	printf("\n");
 }
 
 //dummy main
