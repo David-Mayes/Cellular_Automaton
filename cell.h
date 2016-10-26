@@ -40,5 +40,7 @@ void insertCell(CellGroup* clgp, Cell* cl);
 //takes a pointer to a Cell and free it's memory
 int deleteCell(Cell* cl);
 
+//converts a decimal value to a binary one and returns it
+long int binaryConversion(long int x);
 
 #endif //_CELL_
