@@ -34,6 +34,9 @@ int deleteCellGroup(CellGroup* clgp);
 //takes an int, stores it in a Cell and returns a pointer to it
 Cell* createCell(int num);
 
+//inserts a cell into the specified group
+void insertCell(Cellgroup* clgp, Cell* cl);
+
 //takes a pointer to a Cell and free it's memory
 int deleteCell(Cell* cl);
 
