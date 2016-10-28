@@ -281,8 +281,30 @@ CellGroup* getInitialGroup();
 	}
 }
 
+/*
+ * Prints a cell group
+ */
+void printCellGroup(CellGroup* clgp)
+{
+	//cell to be printed
+	Cell* current = clgp->head;
+
+	//loop through
+	for(int i = 0; i<(clgp->size); i++){
+		//print the correct state
+		if(current->data == 0){
+			printf(".");
+		} else {
+			printf("1");
+		}
+		//move to the next node
+		current = current->right;
+	}
+	//new line for next generation
+	printf("\n");
+}
 //dummy main
 int main()
 {
-	
+
 }

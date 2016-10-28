@@ -53,4 +53,7 @@ int getUserInput();
 //Gets the starting cell group from the user and puts it in a cell group
 *CellGroup getIntialGroup();
 
+//prints a cell group
+void printCellGroup(CellGroup* clgp);
+
 #endif //_CELL_
