@@ -320,12 +320,9 @@ void printCellGroup(CellGroup* clgp)
 	//new line for next generation
 	printf("\n");
 }
+
 //dummy main
 int main()
 {
-<<<<<<< HEAD
 	CellGroup* newCellGroup = getInitialGroup();
-=======
-
->>>>>>> 911183749437e5c22998e54f56262f01374c5f99
 }
