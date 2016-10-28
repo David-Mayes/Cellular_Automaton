@@ -238,7 +238,6 @@ CellGroup* nextGen(CellGroup* clgp, int* ruleset)
 //Gets the decimal number for the ruleset from the user and validates it
 int getUserInput()
 {
-	
 	bool valid = false;
 	int input;
 	while(!valid)
@@ -258,10 +257,10 @@ int getUserInput()
 }
 
 //gets the data in the starting cell group and then returns the cellgroup
-CellGroup* getInitialGroup();
+CellGroup* getInitialGroup()
 {
 	bool valid=false;
-	int input
+	int input;
 	while(!valid)
 	{
 		printf("Please enter the length of the first row\n");
@@ -275,14 +274,32 @@ CellGroup* getInitialGroup();
 			printf("You didnt enter a valid size\n");
 		}
 	}
+	printf("Enter the data in the first row (0 or 1)\n");
+	int initialValues[input];
 	for(int i=0;i<input;i++)
 	{
-		//Get each input
+		bool valid=false;
+		while(!valid)
+		{
+			int currentValue = 0;
+			printf("%d: ",(i+1));
+			scanf("%d",&currentValue);
+			if(currentValue==1||currentValue==0)
+			{
+				initialValues[i]=currentValue;
+				valid=true;
+			}
+			else
+			{
+				printf("You did not enter a valid input\n");
+			}
+		}
 	}
+	return createCellGroup(initialValues);
 }
 
 //dummy main
 int main()
 {
-	
+	CellGroup* newCellGroup = getInitialGroup();
 }
