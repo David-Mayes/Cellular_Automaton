@@ -11,19 +11,15 @@ Creates a cell group and sets the size to the parameter 'num'
 It then passes out a pointer to the new group after it is done 
 initialising it
 */
-CellGroup* createCellGroup(int newValues[])
+CellGroup* createCellGroup(int newValues[], int newGroupSize)
 {
 	//Making the new cellgroup in memory and initialising it
 	CellGroup* newGroup;
 	newGroup = malloc(sizeof(CellGroup));
-	memset(newGroup, 0, sizeof(CellGroup));
 	newGroup->size = 0;
 
-	//Getting the size of the int array
-	int n = (sizeof(*newValues)/sizeof(newValues[0]));
-	printf("%d", n);
 	//add the cells to the group
-	for(int i=0; i<n; i++)
+	for(int i=0; i<newGroupSize; i++)
 	{
 		//create a cell
 		Cell* newCell = createCell(newValues[i]);
@@ -41,7 +37,6 @@ the variables
 Cell* createCell(int num)
 {
 	Cell* newCell = malloc(sizeof(Cell));
-	memset(newCell,0,sizeof(Cell));
 	newCell->data = num;
 	newCell->left = NULL;
 	newCell->right = NULL;
@@ -124,20 +119,21 @@ int deleteCellGroup(CellGroup* clgp)
 	}
 	else
 	{
+		Cell* next = clgp->head;
 		Cell* current = clgp->head;
-		Cell* next = current->right;
-		bool cont = true;
-		while(cont)
+
+		for(int i = 0; i < (clgp->size); i++)
 		{
+			next = current->right;
 			deleteCell(current);
-			clgp->size--;
-			current = next;
-			next=current->right;
-			if(current==NULL)
+			
+			if(next != NULL)
 			{
-				cont=false;
+				current = next;
 			}
+
 		}
+
 		memset(clgp, 0, sizeof(CellGroup));
 		free(clgp);
 		if(clgp!=NULL)
@@ -232,7 +228,7 @@ CellGroup* nextGen(CellGroup* clgp, int* ruleset)
 	
 	int test = deleteCellGroup(clgp);
 	assert( test == 1 );
-	return createCellGroup(values);
+	return createCellGroup(values, clgp->size);
 }
 
 //Gets the decimal number for the ruleset from the user and validates it
@@ -295,7 +291,7 @@ CellGroup* getInitialGroup()
 			}
 		}
 	}
-	return createCellGroup(initialValues);
+	return createCellGroup(initialValues, input);
 }
 
 /*
@@ -328,4 +324,7 @@ int main()
 	CellGroup* newCellGroup = getInitialGroup();
 	printCellGroup(newCellGroup);
 	deleteCellGroup(newCellGroup);
+	/***********************************
+	 *   DELETE THE LAST CELL GROUP    *
+	 * *********************************
 }
