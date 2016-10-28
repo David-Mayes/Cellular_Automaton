@@ -20,8 +20,8 @@ CellGroup* createCellGroup(int newValues[])
 	newGroup->size = 0;
 
 	//Getting the size of the int array
-	int n = (sizeof(newValues) / sizeof(newValues[0]));
-	
+	int n = (sizeof(*newValues)/sizeof(newValues[0]));
+	printf("%d", n);
 	//add the cells to the group
 	for(int i=0; i<n; i++)
 	{
@@ -326,4 +326,6 @@ void printCellGroup(CellGroup* clgp)
 int main()
 {
 	CellGroup* newCellGroup = getInitialGroup();
+	printCellGroup(newCellGroup);
+	deleteCellGroup(newCellGroup);
 }
