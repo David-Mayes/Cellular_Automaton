@@ -25,8 +25,9 @@ typedef struct MyCellGroup{
 	int size;
 }CellGroup;
 
+
 //creates a CellGroup takes a int for the size and returns a pointer
-CellGroup* createCellGroup(int num);
+CellGroup* createCellGroup(int[] newValues);
 
 //takes a pointer to a cellgroup and frees its memory
 int deleteCellGroup(CellGroup* clgp);
@@ -39,6 +40,10 @@ void insertCell(CellGroup* clgp, Cell* cl);
 
 //takes a pointer to a Cell and free it's memory
 int deleteCell(Cell* cl);
+
+
+//Creates the next generation of the automaton
+CellGroup* nextGen(CellGroup* clgp, int* ruleset);
 
 //converts a decimal value to a binary one and returns it
 int* binaryConversion(int x);
