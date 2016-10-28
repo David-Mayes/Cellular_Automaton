@@ -298,8 +298,34 @@ CellGroup* getInitialGroup()
 	return createCellGroup(initialValues);
 }
 
+/*
+ * Prints a cell group
+ */
+void printCellGroup(CellGroup* clgp)
+{
+	//cell to be printed
+	Cell* current = clgp->head;
+
+	//loop through
+	for(int i = 0; i<(clgp->size); i++){
+		//print the correct state
+		if(current->data == 0){
+			printf(".");
+		} else {
+			printf("1");
+		}
+		//move to the next node
+		current = current->right;
+	}
+	//new line for next generation
+	printf("\n");
+}
 //dummy main
 int main()
 {
+<<<<<<< HEAD
 	CellGroup* newCellGroup = getInitialGroup();
+=======
+
+>>>>>>> 911183749437e5c22998e54f56262f01374c5f99
 }
