@@ -11,18 +11,22 @@ Creates a cell group and sets the size to the parameter 'num'
 It then passes out a pointer to the new group after it is done 
 initialising it
 */
-CellGroup* createCellGroup(int num)
+CellGroup* createCellGroup(int newValues[])
 {
+	//Making the new cellgroup in memory and initialising it
 	CellGroup* newGroup;
 	newGroup = malloc(sizeof(CellGroup));
 	memset(newGroup, 0, sizeof(CellGroup));
 	newGroup->size = 0;
 
+	//Getting the size of the int array
+	int n = (sizeof(newValues) / sizeof(newValues[0]));
+	
 	//add the cells to the group
-	for(int i=0; i<num; i++)
+	for(int i=0; i<n; i++)
 	{
 		//create a cell
-		Cell* newCell = createCell(0);
+		Cell* newCell = createCell(newValues[i]);
 		//add it
 		insertCell(newGroup, newCell);
 	}
@@ -145,7 +149,6 @@ int deleteCellGroup(CellGroup* clgp)
 			return 1;
 		}
 	}	
-	return 0;
 }
 
 /*
@@ -182,14 +185,104 @@ int* binaryConversion(int x)
 	return binaryNumber;
 }
 
+CellGroup* nextGen(CellGroup* clgp, int* ruleset)
+{
+	int values[clgp->size];
+	for(int i=0; i<clgp->size; i++)
+	{
+		values[i] = 0;
+	}
+	Cell* current = clgp->head;
+	for(int i=0;i<clgp->size;i++)
+	{
+		if(current->left->data==1 && current->data==1 && current->right->data==1)
+		{
+			values[i] = ruleset[0];
+		}
+		else if(current->left->data==1 && current->data==1 && current->right->data==0)
+		{
+			values[i] = ruleset[1];
+		}
+		else if(current->left->data==1 && current->data==0 && current->right->data==1)
+		{
+			values[i] = ruleset[2];
+		}
+		else if(current->left->data==1 && current->data==0 && current->right->data==0)
+		{
+			values[i] = ruleset[3];
+		}
+		else if(current->left->data==0 && current->data==1 && current->right->data==1)
+		{
+			values[i] = ruleset[4];
+		}
+		else if(current->left->data==0 && current->data==1 && current->right->data==0)
+		{
+			values[i] = ruleset[5];
+		}
+		else if(current->left->data==0 && current->data==0 && current->right->data==1)
+		{
+			values[i] = ruleset[6];
+		}
+		else if(current->left->data==0 && current->data==0 && current->right->data==0)
+		{
+			values[i] = ruleset[7];
+		}
+	}
+		current = current->right;
+	
+	int test = deleteCellGroup(clgp);
+	assert( test == 1 );
+	return createCellGroup(values);
+}
+
+//Gets the decimal number for the ruleset from the user and validates it
+int getUserInput()
+{
+	
+	bool valid = false;
+	int input;
+	while(!valid)
+	{
+		printf("Please enter a number to be used as the ruleset between 0 and 255\n");
+		scanf("%d", &input);
+		if(input>=0 && input<=255)
+		{
+			valid = true;
+		}
+		else
+		{
+			printf("INVALID NUMBER\n");
+		}
+	}
+	return input;
+}
+
+//gets the data in the starting cell group and then returns the cellgroup
+CellGroup* getInitialGroup();
+{
+	bool valid=false;
+	int input
+	while(!valid)
+	{
+		printf("Please enter the length of the first row\n");
+		scanf("%d",&input);
+		if(input>3)
+		{
+			valid=true;
+		}
+		else
+		{
+			printf("You didnt enter a valid size\n");
+		}
+	}
+	for(int i=0;i<input;i++)
+	{
+		//Get each input
+	}
+}
+
 //dummy main
 int main()
 {
-	int* binary = binaryConversion(8);
-	for(int i=0;i<8;i++)
-	{
-		printf("%d\n",binary[i]);
-	}
 	
-	free(binary);	
 }
