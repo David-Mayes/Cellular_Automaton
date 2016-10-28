@@ -27,7 +27,7 @@ typedef struct MyCellGroup{
 
 
 //creates a CellGroup takes a int for the size and returns a pointer
-CellGroup* createCellGroup(int newValues[]);
+CellGroup* createCellGroup(int newValues[], int newGroupSize);
 
 //takes a pointer to a cellgroup and frees its memory
 int deleteCellGroup(CellGroup* clgp);
