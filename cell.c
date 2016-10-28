@@ -21,7 +21,8 @@ CellGroup* createCellGroup(int newValues[])
 
 	//Getting the size of the int array
 	int n = (sizeof(*newValues)/sizeof(newValues[0]));
-	printf("%d", n);
+	printf("SIZE OF new VALues%d\n", n);
+	
 	//add the cells to the group
 	for(int i=0; i<n; i++)
 	{
@@ -131,12 +132,9 @@ int deleteCellGroup(CellGroup* clgp)
 		{
 			deleteCell(current);
 			clgp->size--;
+			if(clgp->size
 			current = next;
 			next=current->right;
-			if(current==NULL)
-			{
-				cont=false;
-			}
 		}
 		memset(clgp, 0, sizeof(CellGroup));
 		free(clgp);
