@@ -28,6 +28,7 @@ int main()
 			CellGroup* newCellGroup = getInitialGroup();
 			saveOutput(newCellGroup, ruleset, 60);
 			deleteCellGroup(newCellGroup);
+			free(ruleset);
 		}
 		else if(choice==2)
 		{
@@ -40,6 +41,7 @@ int main()
 				delay(1);
 			}
 			deleteCellGroup(newCellGroup);
+			free(ruleset);
 		}
 		else if(choice==3)
 		{
