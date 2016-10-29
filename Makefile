@@ -4,8 +4,8 @@
 
 CC=gcc
 CFLAGS=-g -c -Wall -Wextra -pedantic
-OBJECTS=cell.o
-EXECUTABLE=cell
+OBJECTS=cell.o conway.o CATester.o
+EXECUTABLE=CATester
 
 
 $(EXECUTABLE): $(OBJECTS)
@@ -13,6 +13,12 @@ $(EXECUTABLE): $(OBJECTS)
 
 cell.o: cell.h cell.c
 	$(CC) $(CFLAGS) cell.c
+	
+conway.o: conway.h cell.h conway.h
+	$(CC) $(CFLAGS) conway.c
+	
+CATester.o: CATester.c cell.h conway.h
+	$(CC) $(CFLAGS) CATester.c
 
 .PHONY: clean
 clean: 
