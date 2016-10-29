@@ -348,7 +348,6 @@ void printCellGroup(CellGroup* clgp)
 	printf("\n");
 }
 
-<<<<<<< HEAD
 //Creates a delay when called
 void delay(unsigned int seconds)
 {
@@ -356,8 +355,6 @@ void delay(unsigned int seconds)
 	while(time(0)<wait);
 }
 
-=======
->>>>>>> ac1dfa67172330d6d000a90e0ae609a8a49ca758
 //Saves a set number of line to a file
 void saveOutput(CellGroup* clgp, int* ruleset, int lines)
 {

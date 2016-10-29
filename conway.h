@@ -28,10 +28,13 @@ typedef struct MyCellGrid{
 }CellGrid;
 
 //creates a grid of cells, takes in parameters for width and height
-CellGrid* createCellGrid(int width, int newValues[][width], int height);
+CellGrid* createCellGrid(int grid_height, int grid_width, int newValues[grid_height][grid_width]);
 
 //frees the memory used by the grid
 int deleteCellGrid(CellGrid* cell_grid);
+
+//inserts the next CellGroup
+void insertCellGroup(CellGrid* cell_grid, CellGroup* cell_group);
 
 //creates the next generation in Conway's Game of Life
 CellGrid* nextConway(CellGrid* cell_grid);

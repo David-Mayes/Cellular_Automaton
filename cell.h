@@ -18,11 +18,15 @@ typedef struct MyCell{
 	int data;
 	struct MyCell* left;
 	struct MyCell* right;
+	struct MyCell* up;
+	struct MyCell* down;
 }Cell;
 
 //the cellular automaton has a pointer to the head and the size
 typedef struct MyCellGroup{
 	Cell* head;
+	MyCellGroup* next; //only used in Conway
+	MyCellGroup* prev; //"                  "
 	int size;
 }CellGroup;
 
