@@ -61,4 +61,7 @@ void printCellGroup(CellGroup* clgp);
 //Takes in the initial cellgroup, ruleset and the number of lines you want to save
 void saveOutput(CellGroup* clgp, int* ruleset, int lines);
 
+//Delays the program for a set number of seconds
+void delay(unsigned int seconds);
+
 #endif //_CELL_
