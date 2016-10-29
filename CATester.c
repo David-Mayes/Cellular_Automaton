@@ -10,8 +10,8 @@ int main()
 	bool running = true;
 	while(running)
 	{
-		printf("\n1) Save to file\n");
-		printf("2) Print to screen\n");
+		printf("\n1) Save to file (60 Lines)\n");
+		printf("2) Print to screen (30 Lines)\n");
 		printf("3) Run conways game of life\n");
 		printf("0) Quit\n");
 		int choice=0;
@@ -26,14 +26,14 @@ int main()
 		{
 			int* ruleset = binaryConversion(getUserInput());
 			CellGroup* newCellGroup = getInitialGroup();
-			saveOutput(newCellGroup, ruleset, 30);
+			saveOutput(newCellGroup, ruleset, 60);
 			deleteCellGroup(newCellGroup);
 		}
 		else if(choice==2)
 		{
 			int* ruleset = binaryConversion(getUserInput());
 			CellGroup* newCellGroup = getInitialGroup();
-			for(int i=0; i<60; i++)
+			for(int i=0; i<30; i++)
 			{
 				printCellGroup(newCellGroup);
 				newCellGroup = nextGen(newCellGroup, ruleset);

@@ -52,7 +52,7 @@ int* binaryConversion(int x);
 int getUserInput();
 
 //Gets the starting cell group from the user and puts it in a cell group
-CellGroup* getIntialGroup();
+CellGroup* getInitialGroup();
 
 //prints a cell group
 void printCellGroup(CellGroup* clgp);
