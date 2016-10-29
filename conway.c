@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "cell.h"
 #include "conway.h"
@@ -45,7 +46,7 @@ CellGrid* createCellGrid(int grid_height, int grid_width, int newValues[grid_hei
 		}
 
 		//create a cellGroup
-		CellGroup* newCellGroup = createCellGroup(cell_group_values);
+		CellGroup* newCellGroup = createCellGroup(cell_group_values, grid_width);
 
 		//insert it into the grid
 		insertCellGroup(newCellGrid, newCellGroup);
@@ -107,7 +108,7 @@ int deleteCellGrid(CellGrid* cell_grid)
  *
  * Connects all of the cells together vertically
  */
-void insertCellGroup(CeelGrid* cell_grid, CellGroup* cell_group)
+void insertCellGroup(CellGrid* cell_grid, CellGroup* cell_group)
 {
 	//check that the pointers aren't NULL
 	assert(cell_grid != NULL);
@@ -199,7 +200,7 @@ CellGrid* nextConway(CellGrid* cell_grid)
 			
 			/* Calculate the number of living cells around the current cell	*/
 			
-			live_cells = 0;
+			int live_cells = 0;
 			
 			//cell above
 			if( (tmpCell->up)->data == 1 ){
