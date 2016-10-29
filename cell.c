@@ -378,7 +378,7 @@ void saveOutput(CellGroup* clgp, int* ruleset, int lines)
 			else
 			{
 				fprintf(output,"0");
-			}
+			}g
 			current = current->right;
 		}
 		fprintf(output,"\n");
@@ -389,22 +389,4 @@ void saveOutput(CellGroup* clgp, int* ruleset, int lines)
 	
 	//closes the text document
 	fclose(output);
-}
-
-//DummyMain
-int main()
-{
-	int* ruleset = binaryConversion(getUserInput());
-	CellGroup* newCellGroup = getInitialGroup();
-	
-	saveOutput(newCellGroup, ruleset, 20);
-	printCellGroup(newCellGroup);
-	while(true)
-	{
-		newCellGroup = nextGen(newCellGroup, ruleset);
-		printCellGroup(newCellGroup);
-		delay(1);
-	}
-	*/
-	deleteCellGroup(newCellGroup);
 }
