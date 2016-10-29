@@ -25,8 +25,8 @@ typedef struct MyCell{
 //the cellular automaton has a pointer to the head and the size
 typedef struct MyCellGroup{
 	Cell* head;
-	MyCellGroup* next; //only used in Conway
-	MyCellGroup* prev; //"                  "
+	struct MyCellGroup* next; //only used in conway
+	struct MyCellGroup* prev; //"                  "
 	int size;
 }CellGroup;
 
