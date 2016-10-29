@@ -1,10 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "cell.c"
 #include "conway.h"
 
 int main()
 {
+	bool running = true;
+	while(running)
+	{
+		printf("\nWould you like to save a CA to a file?\n");
+		printf("");
+	}
+	
+	
+	
+	
+	
+	
+	
 	int* ruleset = binaryConversion(getUserInput());
 	CellGroup* newCellGroup = getInitialGroup();
 	

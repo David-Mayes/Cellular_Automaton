@@ -13,7 +13,7 @@
  */
 
 #include <stdio.h>
-#include <stlib.h>
+#include <stdlib.h>
 
 #include "cell.h"
 #include "conway.h"

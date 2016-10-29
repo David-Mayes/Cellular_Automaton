@@ -378,7 +378,7 @@ void saveOutput(CellGroup* clgp, int* ruleset, int lines)
 			else
 			{
 				fprintf(output,"0");
-			}g
+			}
 			current = current->right;
 		}
 		fprintf(output,"\n");
