@@ -27,7 +27,7 @@
  */
 CellGrid* createCellGrid(int width, int newValues[][width], int height)
 {
-
+	//allocate the new CellGrid in memory and create it's
 }
 
 /*
