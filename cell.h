@@ -56,4 +56,8 @@ CellGroup* getIntialGroup();
 //prints a cell group
 void printCellGroup(CellGroup* clgp);
 
+//Save output to a file
+//Takes in the initial cellgroup, ruleset and the number of lines you want to save
+void saveOutput(CellGroup* clgp, int* ruleset, int lines);
+
 #endif //_CELL_

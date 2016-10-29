@@ -356,18 +356,55 @@ static void delay(unsigned int seconds)
 	while(time(0)<wait);
 }
 
-//dummy main
+//Saves a set number of line to a file
+void saveOutput(CellGroup* clgp, int* ruleset, int lines)
+{
+	//Opens the file and saves it to 'output'
+	FILE* output = fopen("CAoutput.txt","w");
+	
+	//Loops for the number of lines you want to save
+	for(int i=0; i<lines ;i++)
+	{
+	
+		//Loops through the cells in the group and
+		//save things individually
+		Cell* current = clgp->head;
+		for(int j=0; j<(clgp->size); j++)
+		{
+			if(current->data==0)
+			{
+				fprintf(output,".");
+			}
+			else
+			{
+				fprintf(output,"0");
+			}
+			current = current->right;
+		}
+		fprintf(output,"\n");
+		
+		//Gets the next cellgroup
+		clgp = nextGen(clgp, ruleset);
+	}
+	
+	//closes the text document
+	fclose(output);
+}
+
+//DummyMain
 int main()
 {
 	int* ruleset = binaryConversion(getUserInput());
 	CellGroup* newCellGroup = getInitialGroup();
-	printCellGroup(newCellGroup);
 	
+	saveOutput(newCellGroup, ruleset, 20);
+	printCellGroup(newCellGroup);
 	while(true)
 	{
 		newCellGroup = nextGen(newCellGroup, ruleset);
 		printCellGroup(newCellGroup);
 		delay(1);
 	}
+	*/
 	deleteCellGroup(newCellGroup);
 }
