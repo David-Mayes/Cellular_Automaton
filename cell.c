@@ -350,7 +350,7 @@ void printCellGroup(CellGroup* clgp)
 }
 
 //Creates a delay when called
-static void delay(unsigned int seconds)
+void delay(unsigned int seconds)
 {
 	unsigned int wait = time(0)+seconds;
 	while(time(0)<wait);
