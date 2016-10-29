@@ -85,8 +85,11 @@ deleted and returns 1 otherwise
 */
 int deleteCell(Cell* cl)
 {
+	//Sets the memory location to '0's and gives it back to the memory
 	memset(cl, 0, sizeof(Cell));
 	free(cl);
+	
+	//Makes sure that the cell is successfully deleted
 	if(cl!=NULL)
 	{
 		return 0;
@@ -105,6 +108,7 @@ and return 1 otherwise
 */
 int deleteCellGroup(CellGroup* clgp)
 {
+	//Deletes the cell group if there is nothing in the cellgroup
 	if(clgp->size==0)
 	{
 		memset(clgp, 0, sizeof(CellGroup));
@@ -118,6 +122,8 @@ int deleteCellGroup(CellGroup* clgp)
 			return 1;
 		}
 	}
+	//Otherwise it loops through all the elements in the cell group and
+	//will delete each cell
 	else
 	{
 		Cell* next = clgp->head;
@@ -135,6 +141,7 @@ int deleteCellGroup(CellGroup* clgp)
 
 		}
 
+		//Finally deletes the cell group
 		memset(clgp, 0, sizeof(CellGroup));
 		free(clgp);
 		if(clgp!=NULL)
@@ -182,13 +189,21 @@ int* binaryConversion(int x)
 	return binaryNumber;
 }
 
+/*
+Takes in a cell group and a ruleset then passes out the cellgroup
+that is generated based on the previous cell group and the ruleset
+*/
 CellGroup* nextGen(CellGroup* clgp, int* ruleset)
 {
+	//Loops for the size of the cellgroup and sets 'values' to 0
 	int values[clgp->size];
 	for(int i=0; i<clgp->size; i++)
 	{
 		values[i] = 0;
 	}
+	
+	//Loops through all the elements in clgp and applying the rules based on
+	//the ruleset passed in
 	Cell* current = clgp->head;
 	for(int i=0;i<clgp->size;i++)
 	{
@@ -231,14 +246,18 @@ CellGroup* nextGen(CellGroup* clgp, int* ruleset)
 	//Saving the size before we delete it so we can pass it into the next generation
 	int clgpSize = clgp->size;
 	
+	//Deletes the cell and makes sure it is done correctly
 	int test = deleteCellGroup(clgp);
 	assert( test == 0 );
+	
+	//returns the new cellgroup
 	return createCellGroup(values, clgpSize);
 }
 
 //Gets the decimal number for the ruleset from the user and validates it
 int getUserInput()
 {
+	//Sets up a validation that will run until a valid input is given
 	bool valid = false;
 	int input;
 	while(!valid)
@@ -254,12 +273,15 @@ int getUserInput()
 			printf("INVALID NUMBER\n");
 		}
 	}
+	
+	//Returns the validated input to the user
 	return input;
 }
 
 //gets the data in the starting cell group and then returns the cellgroup
 CellGroup* getInitialGroup()
 {
+	//Loops to get a valid length of row
 	bool valid=false;
 	int input;
 	while(!valid)
@@ -275,6 +297,9 @@ CellGroup* getInitialGroup()
 			printf("You didnt enter a valid size\n");
 		}
 	}
+	
+	//Loops for the length of the row and gets values from the user and then 
+	//saves them into the values array
 	printf("Enter the data in the first row (0 or 1)\n");
 	int initialValues[input];
 	for(int i=0;i<input;i++)
@@ -296,6 +321,8 @@ CellGroup* getInitialGroup()
 			}
 		}
 	}
+	
+	//Then creates a cellgroup based on the values passed in
 	return createCellGroup(initialValues, input);
 }
 
