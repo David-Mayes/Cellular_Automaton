@@ -4,6 +4,7 @@
 #include "cell.h"
 //#include "conway.h"
 
+
 int main()
 {
 	bool running = true;
@@ -49,6 +50,4 @@ int main()
 			printf("INVALID INPUT\n");
 		}
 	}
-	
-	return 0;
 }

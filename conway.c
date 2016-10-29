@@ -25,7 +25,7 @@
  * Creates 'height' number of cellGroups, with 'width' number of cells in them
  * The groups are linked together.
  */
-CellGrid* createCellGrid(int newValues[][], int width, int height)
+CellGrid* createCellGrid(int width, int newValues[][width], int height)
 {
 
 }

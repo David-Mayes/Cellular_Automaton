@@ -14,10 +14,10 @@ $(EXECUTABLE): $(OBJECTS)
 cell.o: cell.h cell.c
 	$(CC) $(CFLAGS) cell.c
 	
-conway.o: conway.h cell.h conway.h
+conway.o: conway.c conway.h
 	$(CC) $(CFLAGS) conway.c
 	
-CATester.o: CATester.c cell.h conway.h
+CATester.o: CATester.c
 	$(CC) $(CFLAGS) CATester.c
 
 .PHONY: clean
