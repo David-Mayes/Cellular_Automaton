@@ -224,8 +224,10 @@ CellGroup* nextGen(CellGroup* clgp, int* ruleset)
 		{
 			values[i] = ruleset[7];
 		}
-	}
+		//move to the next node
 		current = current->right;
+	}
+
 	
 	int test = deleteCellGroup(clgp);
 	assert( test == 0 );
