@@ -228,10 +228,12 @@ CellGroup* nextGen(CellGroup* clgp, int* ruleset)
 		current = current->right;
 	}
 
+	//Saving the size before we delete it so we can pass it into the next generation
+	int clgpSize = clgp->size;
 	
 	int test = deleteCellGroup(clgp);
 	assert( test == 0 );
-	return createCellGroup(values, clgp->size);
+	return createCellGroup(values, clgpSize);
 }
 
 //Gets the decimal number for the ruleset from the user and validates it
