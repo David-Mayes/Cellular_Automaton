@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <time.h>
 
 #include "cell.h"
 
@@ -227,7 +228,7 @@ CellGroup* nextGen(CellGroup* clgp, int* ruleset)
 		current = current->right;
 	
 	int test = deleteCellGroup(clgp);
-	assert( test == 1 );
+	assert( test == 0 );
 	return createCellGroup(values, clgp->size);
 }
 
@@ -317,14 +318,25 @@ void printCellGroup(CellGroup* clgp)
 	printf("\n");
 }
 
+//Creates a delay when called
+static void delay(unsigned int seconds)
+{
+	unsigned int wait = time(0)+seconds;
+	while(time(0)<wait);
+}
 
 //dummy main
 int main()
 {
+	int* ruleset = binaryConversion(getUserInput());
 	CellGroup* newCellGroup = getInitialGroup();
 	printCellGroup(newCellGroup);
+	
+	while(true)
+	{
+		newCellGroup = nextGen(newCellGroup, ruleset);
+		printCellGroup(newCellGroup);
+		delay(1);
+	}
 	deleteCellGroup(newCellGroup);
-	/***********************************
-	 *   DELETE THE LAST CELL GROUP    *
-	 * *********************************
 }
