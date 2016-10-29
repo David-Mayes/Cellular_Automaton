@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
-#include <time.h>
 
 #include "cell.h"
 
@@ -347,13 +346,6 @@ void printCellGroup(CellGroup* clgp)
 	}
 	//new line for next generation
 	printf("\n");
-}
-
-//Creates a delay when called
-static void delay(unsigned int seconds)
-{
-	unsigned int wait = time(0)+seconds;
-	while(time(0)<wait);
 }
 
 //Saves a set number of line to a file

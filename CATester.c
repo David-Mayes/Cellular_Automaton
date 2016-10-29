@@ -1,8 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "cell.c"
+#include <time.h>
+
+#include "cell.h"
 #include "conway.h"
+
+//Creates a delay when called
+static void delay(unsigned int seconds)
+{
+	unsigned int wait = time(0)+seconds;
+	while(time(0)<wait);
+}
 
 int main()
 {
