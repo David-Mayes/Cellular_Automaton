@@ -1,4 +1,3 @@
-
 /***********************************************
  * An Implementation of Conway's Game of Life. *
  * ********************************************/
@@ -38,5 +37,11 @@ void insertCellGroup(CellGrid* cell_grid, CellGroup* cell_group);
 
 //creates the next generation in Conway's Game of Life
 CellGrid* nextConway(CellGrid* cell_grid);
+
+//Prints the conway that is passed in
+void printGrid(CellGrid* myConway);
+
+//Gets the initial grid from the user
+CellGrid* getInitialGrid();
 
 #endif //_CONWAY_

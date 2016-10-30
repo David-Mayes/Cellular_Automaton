@@ -274,4 +274,106 @@ CellGrid* nextConway(CellGrid* cell_grid)
 	return createCellGrid(grid_height, grid_width, values);
 }
 
+/*
+Prints the current generation of the conway
+*/
+void printGrid(CellGrid* myConway)
+{
+	//Set up cell variables
+	Cell* currentHead = myConway->head->head;
+	Cell* currentCell = currentHead;
+	
+	//Loop downwards
+	for(int i=0; i<myConway->height; i++)
+	{
+		//Loop sideways
+		for(int j=0; j<myConway->width; j++)
+		{
+			//Print values
+			if(currentCell->data == 0)
+			{
+				printf(".");
+			} 
+			else 
+			{
+				printf("1");
+			}
+			//Iterate sideways
+			currentCell = currentCell->right;
+		}
+		//Iterate downwards
+		currentCell = currentHead->down;
+		currentHead = currentHead->down;
+	}
+}
 
+/*
+Gets initial conway from the user
+*/
+CellGrid* getInitialGrid()
+{
+	//Loops to get a valid length of row
+	bool valid=false;
+	int length;
+	while(!valid)
+	{
+		printf("Please enter the length of the rows\n");
+		scanf("%d",&length);
+		if(length>3)
+		{
+			valid=true;
+		}
+		else
+		{
+			printf("You didnt enter a valid size\n");
+		}
+	}
+	
+	//Loops to get a valid height of grid
+	valid=false;
+	int height;
+	while(!valid)
+	{
+		printf("Please enter the number of rows\n");
+		scanf("%d",&height);
+		if(height>3)
+		{
+			valid=true;
+		}
+		else
+		{
+			printf("You didnt enter a valid size\n");
+		}
+	}
+	
+	//Creates array of initial values
+	int initialValues[height][length];
+	
+	//Loop for height
+	for(int i=0; i<height; i++)
+	{
+		//Loop for width
+		for(int j=0; j<length; j++)
+		{
+			bool valid=false;
+			while(!valid)
+			{
+				int currentValue = 0;
+				printf("(%d,%d): ",j,i);
+				scanf("%d",&currentValue);				
+				if(currentValue==1||currentValue==0)
+				{
+					initialValues[i][j]=currentValue;
+					valid=true;
+				}
+				else
+				{
+					printf("You did not enter a valid input\n");
+				}
+			}
+		}
+	}
+	
+	//Returns the grid
+	return createCellGrid(height, length, initialValues);
+}
