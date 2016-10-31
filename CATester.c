@@ -46,10 +46,13 @@ int main()
 		else if(choice==3)
 		{
 			CellGrid* myGrid = getInitialGrid();
+			printGrid(myGrid);
+
 			for(int i=0; i<30; i++)
 			{
+				myGrid = nextConway(myGrid);
 				printGrid(myGrid);
-				CellGrid* myGrid = nextConway(myGrid);
+
 				delay(1);
 			}
 			deleteCellGrid(myGrid);

@@ -64,7 +64,7 @@ int deleteCellGrid(CellGrid* cell_grid)
 {
 	//check that the pointers aren't NULL
 	assert(cell_grid != NULL);
-
+	
 	//if there is nothing in the grid delete it
 	if(cell_grid->height == 0 ){
 
@@ -178,6 +178,9 @@ void insertCellGroup(CellGrid* cell_grid, CellGroup* cell_group)
  */
 CellGrid* nextConway(CellGrid* cell_grid)
 {
+	//check that the pointer is not NULL
+	assert(cell_grid != NULL);
+
 	//create template for the next generation
 	int values[cell_grid->height][cell_grid->width];
 
