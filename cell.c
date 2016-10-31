@@ -16,7 +16,7 @@ CellGroup* createCellGroup(int newValues[], int newGroupSize)
 {
 	//Making the new cellgroup in memory and initialising it
 	CellGroup* newGroup;
-	newGroup = malloc(sizeof(CellGroup));
+	newGroup = calloc(1, sizeof(CellGroup));
 	newGroup->size = 0;
 
 	//add the cells to the group
@@ -37,7 +37,7 @@ the variables
 */
 Cell* createCell(int num)
 {
-	Cell* newCell = malloc(sizeof(Cell));
+	Cell* newCell = calloc(1, sizeof(Cell));
 	newCell->data = num;
 	newCell->left = NULL;
 	newCell->right = NULL;

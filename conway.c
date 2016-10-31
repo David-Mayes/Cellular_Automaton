@@ -28,9 +28,10 @@
  */
 CellGrid* createCellGrid(int grid_height, int grid_width, int newValues[grid_height][grid_width])
 {
+
 	//allocate the new CellGrid in memory
 	CellGrid* newCellGrid;
-	newCellGrid = malloc(sizeof(CellGrid));
+	newCellGrid = calloc(1, sizeof(CellGrid));
 	
 	//set the sizes
 	newCellGrid->width = grid_width;
@@ -48,6 +49,7 @@ CellGrid* createCellGrid(int grid_height, int grid_width, int newValues[grid_hei
 		//create a cellGroup
 		CellGroup* newCellGroup = createCellGroup(cell_group_values, grid_width);
 
+		printf("hello\n");
 		//insert it into the grid
 		insertCellGroup(newCellGrid, newCellGroup);
 
@@ -269,9 +271,9 @@ CellGrid* nextConway(CellGrid* cell_grid)
 	int grid_height = cell_grid->height;
 	int grid_width = cell_grid->width;
 
+	
 	//delete the cellgrid
-	int test = deleteCellGrid(cell_grid);
-	assert(test == 0);
+	deleteCellGrid(cell_grid);
 
 	//return the new CellGrid
 	return createCellGrid(grid_height, grid_width, values);
