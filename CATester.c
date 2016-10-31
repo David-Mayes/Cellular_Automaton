@@ -50,6 +50,7 @@ int main()
 			for(int i=0; i<30; i++)
 			{
 				printGrid(myGrid);
+				printf("\n");
 				myGrid = nextConway(myGrid);
 				delay(1);
 			}

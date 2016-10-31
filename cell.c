@@ -18,7 +18,7 @@ CellGroup* createCellGroup(int newValues[], int newGroupSize)
 	CellGroup* newGroup;
 	newGroup = calloc(1, sizeof(CellGroup));
 	newGroup->size = 0;
-
+	
 	//add the cells to the group
 	for(int i=0; i<newGroupSize; i++)
 	{
@@ -109,7 +109,7 @@ and return 1 otherwise
 int deleteCellGroup(CellGroup* clgp)
 {
 	//Deletes the cell group if there is nothing in the cellgroup
-	if(clgp->size==0)
+	if(clgp->size == 0)
 	{
 		memset(clgp, 0, sizeof(CellGroup));
 		free(clgp);
@@ -129,17 +129,17 @@ int deleteCellGroup(CellGroup* clgp)
 		Cell* next = clgp->head;
 		Cell* current = clgp->head;
 
-		for(int i = 0; i < (clgp->size); i++)
-		{
-			next = current->right;
-			deleteCell(current);
-			
-			if(next != NULL)
-			{
-				current = next;
-			}
+		while(clgp->size != 0){
+		
+			current = next;
 
-		}
+			if(clgp->size > 1){
+				next = next->right;
+			}
+			deleteCell(current);
+
+			(clgp->size)--;
+		}			
 
 		//Finally deletes the cell group
 		memset(clgp, 0, sizeof(CellGroup));

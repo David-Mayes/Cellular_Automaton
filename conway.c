@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 
 #include "conway.h"
 #include "cell.h"
@@ -42,6 +43,11 @@ CellGrid* createCellGrid(int grid_height, int grid_width, int newValues[grid_hei
 		//create an array with the values to put into the current grid row
 		int cell_group_values[grid_width];
 
+		//zero all the values
+		for(int j = 0; j < grid_width; j++){
+			cell_group_values[j] = 0;
+		}
+
 		for(int j = 0; j < grid_width; j++){
 			cell_group_values[j] = newValues[newCellGrid->height][j];
 		}
@@ -49,9 +55,9 @@ CellGrid* createCellGrid(int grid_height, int grid_width, int newValues[grid_hei
 		//create a cellGroup
 		CellGroup* newCellGroup = createCellGroup(cell_group_values, grid_width);
 
-		printf("hello\n");
 		//insert it into the grid
 		insertCellGroup(newCellGrid, newCellGroup);
+	
 
 	}
 	return newCellGrid;
@@ -69,7 +75,8 @@ int deleteCellGrid(CellGrid* cell_grid)
 	
 	//if there is nothing in the grid delete it
 	if(cell_grid->height == 0 ){
-
+	
+		memset(cell_grid, 0, sizeof(CellGrid));
 		free(cell_grid);
 
 		if(cell_grid != NULL){
@@ -83,17 +90,21 @@ int deleteCellGrid(CellGrid* cell_grid)
 		CellGroup* next = cell_grid->head;
 		CellGroup* current = cell_grid->head;
 
-		for(int i = 0; i < (cell_grid->height); i++){
-			next = current->next;
-			deleteCellGroup(current);
+		while(cell_grid->height != 0){
+		
+		current = next;
+		//move to the next group
+		if(cell_grid->height > 1){
+			next = next->next;
+		}
+		deleteCellGroup(current);
+		
+		(cell_grid->height)--;
 
-			if(next != NULL)
-			{
-				current = next;
-			}
 		}
 
 		//deletes the cell grid
+		memset(cell_grid, 0, sizeof(CellGrid));
 		free(cell_grid);
 
 		if(cell_grid != NULL){
@@ -125,7 +136,7 @@ void insertCellGroup(CellGrid* cell_grid, CellGroup* cell_group)
 		CellGroup* tmpGroup = cell_grid->head;
 
 		//loop until the end of the group
-		for( int i = 0; i < cell_grid->height; i++){
+		for( int i = 0; i < (cell_grid->height - 1); i++){
 		       //move to the next group
 		       tmpGroup = tmpGroup->next;
 		}
@@ -151,7 +162,7 @@ void insertCellGroup(CellGrid* cell_grid, CellGroup* cell_group)
 	Cell* cell_head = (cell_grid->head)->head;
 
 	//loop through the cells
-	for(int i = 0; i < cell_grid->width; i++){
+	for(int i = 0; i < (cell_grid->width); i++){
 			
 	//point the cells to each other
 	cell_below->up = cell_above;
@@ -198,10 +209,10 @@ CellGrid* nextConway(CellGrid* cell_grid)
 	Cell* tmpCell = (cell_grid->head)->head;
 
 	//loop through the cells vertically
-	for(int i = 0; i < cell_grid->height; i++){
+	for(int i = 0; i < (cell_grid->height); i++){
 
 		//loop through the cells horizontally
-		for(int j = 0; j < cell_grid->width; j++){
+		for(int j = 0; j < (cell_grid->width); j++){
 			
 			/* Calculate the number of living cells around the current cell	*/
 			
@@ -224,6 +235,26 @@ CellGrid* nextConway(CellGrid* cell_grid)
 			}
 			//cell left
 			if( (tmpCell->left)->data == 1 ){
+
+				live_cells++;
+			}
+			//cell up-left
+			if( ((tmpCell->up)->left)->data == 1 ){
+
+				live_cells++;
+			}
+			//cell up-right
+			if( ((tmpCell->up)->right)->data == 1 ){
+
+				live_cells++;
+			}
+			//cell down-right
+			if( ((tmpCell->down)->right)->data == 1 ){
+
+				live_cells++;
+			}
+			//cell down-left
+			if( ((tmpCell->down)->left)->data == 1 ){
 
 				live_cells++;
 			}
@@ -263,7 +294,6 @@ CellGrid* nextConway(CellGrid* cell_grid)
 		}
 		
 		//move to the next row
-		tmpCell = tmpCell->right; //move back round to the head
 		tmpCell = tmpCell->down; //move down to the next row
 	}
 
