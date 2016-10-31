@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "cell.h"
-//#include "conway.h"
+#include "conway.h"
 
 
 int main()
@@ -12,7 +12,7 @@ int main()
 	{
 		printf("\n1) Save to file (60 Lines)\n");
 		printf("2) Print to screen (30 Lines)\n");
-		printf("3) Run conways game of life\n");
+		printf("3) Run conways game of life (30 screens)\n");
 		printf("0) Quit\n");
 		int choice=0;
 		printf("Enter your choice: ");
@@ -45,7 +45,14 @@ int main()
 		}
 		else if(choice==3)
 		{
-			//RUN CONWAY STUFF
+			CellGrid* myGrid = getInitialGrid();
+			for(int i=0; i<30; i++)
+			{
+				printGrid(myGrid);
+				myGrid = nextConway(myGrid);
+				delay(1);
+			}
+			deleteCellGrid(myGrid);
 		}
 		else
 		{

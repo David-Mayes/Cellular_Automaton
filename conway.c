@@ -16,8 +16,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "cell.h"
 #include "conway.h"
+#include "cell.h"
 
 /*
  * Creates a grid of cells,
@@ -41,8 +41,8 @@ CellGrid* createCellGrid(int grid_height, int grid_width, int newValues[grid_hei
 		//create an array with the values to put into the current grid row
 		int cell_group_values[grid_width];
 
-		for(int i = 0; i < grid_width; i++){
-			cell_group_values[i] = newValues[newCellGrid->height][i];
+		for(int j = 0; j < grid_width; j++){
+			cell_group_values[j] = newValues[newCellGrid->height][j];
 		}
 
 		//create a cellGroup
@@ -301,6 +301,8 @@ void printGrid(CellGrid* myConway)
 			//Iterate sideways
 			currentCell = currentCell->right;
 		}
+		printf("\n");
+		
 		//Iterate downwards
 		currentCell = currentHead->down;
 		currentHead = currentHead->down;
@@ -359,7 +361,7 @@ CellGrid* getInitialGrid()
 			while(!valid)
 			{
 				int currentValue = 0;
-				printf("(%d,%d): ",j,i);
+				printf("(%d,%d): ",(j+1),(i+1));
 				scanf("%d",&currentValue);				
 				if(currentValue==1||currentValue==0)
 				{
