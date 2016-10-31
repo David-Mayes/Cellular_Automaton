@@ -49,7 +49,7 @@ int main()
 			for(int i=0; i<30; i++)
 			{
 				printGrid(myGrid);
-				myGrid = nextConway(myGrid);
+				CellGrid* myGrid = nextConway(myGrid);
 				delay(1);
 			}
 			deleteCellGrid(myGrid);
