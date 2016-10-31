@@ -1,6 +1,7 @@
 #David Mayes
 #150012384
-#AC21008
+#Gavin Henderson
+#150010848
 
 CC=gcc
 CFLAGS=-g -c -Wall -Wextra -pedantic
